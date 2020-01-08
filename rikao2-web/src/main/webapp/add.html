@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加</title>
+<script type="text/javascript" src="plugins/angularjs/angular.min.js"></script>
+<script type="text/javascript">
+var app=angular.module('myApp',[]);
+app.controller('myController',function($scope,$http){
+	
+	$scope.add=function(){
+		$http.post('../user/add.do',$scope.entity).then(
+		  function(a){
+			  console.log(a)
+			  if(a){
+				  alert("成功");
+			  }else{
+				  alert("失败");
+			  }
+		  }		
+		 )
+	}
+	
+	
+})
+</script>
+<body ng-app="myApp" ng-controller="myController" >
+头像：<input type="file" id="file"> <imgsrc="{{entity.image}}" width="100px" height="100px"><button ng-click="shang()">上传</button><br>
+用户名:<input ng-model="entity.name"><br>
+密码:<input ng-model="entity.pwd"><br>
+性别:<input ng-model="entity.sex"><br>
+创建时间:<input ng-model="entity.cdate"><br>
+手机号:<input ng-model="entity.phone"><br>
+地址:<input ng-model="entity.dir"><br>
+<button ng-click="add()">tj</button>
+    
+</body>
+</html>
